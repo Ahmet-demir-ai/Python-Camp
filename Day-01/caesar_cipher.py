@@ -5,22 +5,33 @@ text = input("Type your message:\n").lower()
 shift = int(input("Type the shift number:\n"))
 
 def encrypt(original_text, shift_amount):
-    chipher_text = ""  # Başlangıçta boş olmalı
+    cipher_text = ""  # Doğru değişken ismi
     
     for letter in original_text:
         if letter in alphabet:  # Sadece harfler şifrelenecek
-            sum_index = (alphabet.index(letter) + shift_amount) % len(alphabet)
-            chipher_text += alphabet[sum_index]
+            new_index = (alphabet.index(letter) + shift_amount) % len(alphabet)
+            cipher_text += alphabet[new_index]
         else:
-            chipher_text += letter  # Özel karakterler olduğu gibi eklenmeli
+            cipher_text += letter  # Özel karakterler olduğu gibi eklenmeli
 
-    print(f"Encrypted text: {chipher_text}")
-encrypt(original_text=text, shift_amount=shift)
+    print(f"Encrypted text: {cipher_text}")
 
-def dycrpt(orginal_text,shift_amount):
-    chipher_text=""
-    for letter in orginal_text:
-        sum_index=(alphabet.index(letter)-shift_amoun)%len(alphabet)
-        chipher_text+=sum_index
-    print(f"dycript text: {chipher_text}")
-encrypt(original_text=text, shift_amount=shift)
+def decrypt(original_text, shift_amount):
+    cipher_text = ""
+
+    for letter in original_text:
+        if letter in alphabet:
+            new_index = (alphabet.index(letter) - shift_amount) % len(alphabet)
+            cipher_text += alphabet[new_index]
+        else:
+            cipher_text += letter  # Özel karakterler olduğu gibi eklenmeli
+
+    print(f"Decrypted text: {cipher_text}")
+
+if direction == "encode":
+    encrypt(original_text=text, shift_amount=shift)
+elif direction == "decode":
+    decrypt(original_text=text, shift_amount=shift)
+else:
+    print("Invalid option. Please type 'encode' or 'decode'.")
+
